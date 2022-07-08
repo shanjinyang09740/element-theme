@@ -1,0 +1,159 @@
+@import "./self-fonts/iconfont.css";
+
+html,
+body {
+  width: 100%;
+  min-width: 800px;
+  margin: 0;
+  padding: 0;
+  font-family: "Microsoft YaHei";
+}
+#app {
+  box-sizing: border-box;
+}
+
+.el-button .iconfont {
+  margin-right: 5px;
+}
+/**=========表格和分页组合样式start======================*/
+.fu-table-wrapper {
+  background-color: #ffffff;
+  overflow: auto;
+}
+.fu-table-wrapper .el-pagination {
+  margin: 20px 0 40px 20px;
+}
+/**=========表格和分页组合样式end======================*/
+
+/**=========树的样式start======================*/
+.fu-tree-wrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.fu-tree-wrapper .el-tree {
+  background-color: #f0f2fa;
+}
+/**=========树的样式end======================*/
+
+/**=========toolbar的样式start==========================*/
+.fu-toolbar-has-form {
+  padding: 0 9px 9px;
+  display: flex;
+  justify-content: space-between;
+}
+.fu-toolbar-only-form {
+  padding: 0 9px 9px;
+  display: flex;
+  justify-content: flex-end;
+}
+.fu-toolbar-has-form .el-form,
+.fu-toolbar-only-form .el-form {
+  display: flex;
+}
+.fu-toolbar-has-form .el-form .el-form-item,
+.fu-toolbar-only-form .el-form .el-form-item {
+  margin-bottom: 0;
+}
+/**=========toolbar的样式end==========================*/
+
+/**=========公共样式start======================*/
+/*用在表格和树内部的title样式*/
+.fu-inner-title {
+  margin: 16px 0 15px 20px;
+  font-size: 14px;
+  font-family: Microsoft YaHei;
+  font-weight: bold;
+  color: #666;
+}
+/*表格和树的内部标题icon样式*/
+.fu-inner-title .iconfont {
+  margin-right: 5px;
+  color: #666;
+}
+/*表格中图标按钮样式*/
+.el-table .iconfont {
+  margin-right: 10px;
+  font-size: 20px;
+  color: #409eff;
+  cursor: pointer;
+}
+/*右边报错弹窗样式*/
+.el-notification__content {
+  overflow-wrap: break-word;
+}
+.el-notification__group {
+  width: 90%;
+}
+/* 表格样式问题 */
+.el-table__fixed-right {
+  height: 100% !important;
+}
+.el-table__fixed {
+  height: 100% !important;
+}
+
+/*文本**/
+.font20 {
+  font-size: 20px;
+}
+
+.font16 {
+  font-size: 16px;
+}
+
+/* 文章列表组件样式 */
+.tableListTitle {
+    font-size: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.tableListTitle .titleWords {
+  font-size: 20px;
+}
+
+.tableListTitle .more {
+  font-size: 16px;
+  color: #999;
+  cursor: pointer;
+}
+
+.tableListTitle .more:hover {
+  color: #2175c9;
+}
+
+/**=========公共样式end======================*/
+
+/* ======================个人样式=================== */
+.my-el-message-box {
+  width: 700px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,63 @@
+{
+    "name": "element-theme",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "serve": "vue-cli-service serve --open",
+        "build": "vue-cli-service build --target wc --name my-custom-element ./src/main.js",
+        "lint": "vue-cli-service lint"
+    },
+    "dependencies": {
+        "@antv/l7": "^2.8.42",
+        "@antv/l7-maps": "^2.8.42",
+        "@handsontable-pro/vue": "^3.1.1",
+        "@handsontable/vue": "^12.0.1",
+        "@handsontable/vue3": "^12.0.1",
+        "axios": "^0.23.0",
+        "core-js": "^3.6.5",
+        "element-ui": "^2.15.6",
+        "exceljs": "^4.3.0",
+        "express": "^4.17.1",
+        "fusion-ui": "git+http://git.gofusion.cn/product/framework-fusion-ui.git#develop",
+        "gojs": "^2.2.5",
+        "handsontable": "^12.0.1",
+        "handsontable-pro": "^6.2.3",
+        "less": "^4.1.2",
+        "less-loader": "^5.0.0",
+        "lodash": "^4.17.21",
+        "qs": "^6.10.2",
+        "vue": "^2.6.11",
+        "vue-axios": "^3.4.0",
+        "vue-pdf": "^4.3.0",
+        "vue-router": "^3.5.2",
+        "vuex": "^3.6.2"
+    },
+    "devDependencies": {
+        "@vue/cli-plugin-babel": "~4.5.0",
+        "@vue/cli-plugin-eslint": "~4.5.0",
+        "@vue/cli-service": "~4.5.0",
+        "babel-eslint": "^10.1.0",
+        "eslint": "^6.7.2",
+        "eslint-plugin-vue": "^6.2.2",
+        "vue-template-compiler": "^2.6.11"
+    },
+    "eslintConfig": {
+        "root": true,
+        "env": {
+            "node": true
+        },
+        "extends": [
+            "plugin:vue/essential",
+            "eslint:recommended"
+        ],
+        "parserOptions": {
+            "parser": "babel-eslint"
+        },
+        "rules": {}
+    },
+    "browserslist": [
+        "> 1%",
+        "last 2 versions",
+        "not dead"
+    ]
+}
