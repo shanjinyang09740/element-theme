@@ -5,6 +5,7 @@ import router from "./router";
 import "@/assets/theme/base.css";
 import "@/assets/theme/index.css";
 import "@/assets/theme/self.css";
+
 import Vuex from "vuex";
 import axios from "axios";
 import "babel-polyfill";

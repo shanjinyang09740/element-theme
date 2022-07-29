@@ -1,5 +1,5 @@
 export default [{
     path: "/",
     component: () =>
-        import ("@/pages/vueExcelTable"),
+        import ("@/pages/intersectionObserver"),
 }, ];
