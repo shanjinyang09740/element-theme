@@ -1,5 +1,9 @@
 import axios from "axios";
 
+export function genID(length) {
+    return Math.random().toString().substr(3, length);
+}
+
 /***
  * @decription 防抖函数--- 用户触发事件过于频繁，控制事件函数只执行最后一次----可作用于输入框
  * @param {Function} fn 传入的主体函数

@@ -1,5 +1,5 @@
 export default [{
     path: "/",
     component: () =>
-        import ("@/pages/intersectionObserver"),
+        import ("@/pages/table"),
 }, ];
