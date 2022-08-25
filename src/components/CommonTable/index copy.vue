@@ -52,16 +52,18 @@
     <fu-table
       :fu-request="tableReq"
       :fu-data="tableData"
-      :fu-callback="callback"
+      :fu-callback="columnCallback ? columnCallback : callback"
       :fu-cbparams="codeList"
       border
       :ref="tableId"
       :fu-id="tableId"
       :max-height="maxHeight"
+      :row-class-name="tableRowClassName"
       @selection-change="handleSelectionChange"
       @sort-change="sortChange"
       @select="handleSelect"
       @select-all="selectAll"
+      v-on="$listeners"
     >
       <fu-table-column
         type="selection"
@@ -98,6 +100,19 @@
               handleProperty(scope.row[item.prop], item.handlePropertyCallback)
             }}
           </div>
+          <!-- 1.必须有slot插槽具名 2.检查是否可以显示slot插槽 -->
+          <template slot-scope="scope" v-else-if="item.slot">
+            <slot
+              :name="item.slot"
+              :row="scope.row"
+              :column="scope.column"
+              :columnName="scope.column.property"
+              :value="scope.row[item.prop]"
+              :rowIndex="scope.$index"
+              :data="scope"
+              >{{ scope.row[item.prop] }}</slot
+            >
+          </template>
           <div v-else>{{ scope.row[item.prop] }}</div>
         </template>
       </fu-table-column>
@@ -106,6 +121,8 @@
         :label="operationName"
         :width="operationWidth"
         fixed="right"
+        align="center"
+        header-align="center"
         v-if="isNeedOperation"
       >
         <template slot-scope="scope">
@@ -136,7 +153,7 @@ import { Table, TableColumn, Pagination, Message } from "fusion-ui";
 import { postJSON } from "@/utils/post";
 
 export default {
-  name: "dataPreview",
+  name: "CommonTable",
   components: {
     FuTable: Table,
     FuTableColumn: TableColumn,
@@ -145,7 +162,7 @@ export default {
   props: {
     selectable: {
       type: Function,
-      default: function() {
+      default: function () {
         return true;
       },
     },
@@ -179,7 +196,7 @@ export default {
     // 当一个页面需要引入多个commonTable时，需要定义不同的id
     tableId: {
       type: String,
-      default: "table_template_id",
+      required: true,
     },
     /**
      * @description 固定显示的表格列数据 主要是为了适应当前表格
@@ -230,6 +247,32 @@ export default {
       default: true,
       type: Boolean,
     },
+    /**
+     * @description 静态数据
+     */
+    staticTableData: {
+      type: Object,
+      default() {
+        return {
+          page: 1,
+          pagerows: 10,
+          rows: [],
+          totalrows: 0,
+        };
+      },
+    },
+    isUseSlot: {
+      type: Function,
+      default() {
+        return true;
+      },
+    },
+    /**
+     * @description fu-callback
+     */
+    columnCallback: {
+      type: Function,
+    },
   },
   data() {
     return {
@@ -278,8 +321,24 @@ export default {
     },
   },
   watch: {
-    isNeedOperation(newVal) {
-      console.log(newVal);
+    isNeedOperation(newVal) {},
+    staticTableData: {
+      immediate: true,
+      deep: true,
+      handler(val) {
+        if ("page" in val) {
+          this.tableData.page = val.page;
+        }
+        if ("pagerows" in val) {
+          this.tableData.pagerows = val.pagerows;
+        }
+        if ("rows" in val) {
+          this.tableData.rows = val.rows;
+        }
+        if ("totalrows" in val) {
+          this.tableData.totalrows = val.totalrows;
+        }
+      },
     },
   },
   beforeCreate() {},
@@ -302,13 +361,17 @@ export default {
       getLabel(this, element);
     }
   },
-  beforeMount() {},
-  mounted() {},
-  beforeUpdate() {},
-  updated() {},
-  beforeDestroy() {},
-  destroyed() {},
   methods: {
+    /**
+     * @description 自定义样式
+     */
+    tableRowClassName({ row, rowIndex }) {
+      if (row && row.highLight) {
+        return "highLight-row";
+      } else {
+        return "";
+      }
+    },
     /**
      * @description 转码操作
      */
@@ -364,7 +427,6 @@ export default {
      * @description 表格排序
      */
     sortChange({ column, prop, order }) {
-      console.log(column, prop, order);
       this.sortName = prop;
       if (order === "ascending") {
         this.sortFlag = "asc";
@@ -448,5 +510,8 @@ export default {
   /deep/.el-table__fixed-right {
     height: 100% !important;
   }
+}
+/deep/.el-table .highLight-row {
+  background: rgb(236, 245, 255);
 }
 </style>
