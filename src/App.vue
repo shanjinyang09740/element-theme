@@ -1,29 +1,31 @@
 <template>
   <div id="app">
-    <router-view :key="$route.fullPath"></router-view>
+    <layout-comp></layout-comp>
   </div>
 </template>
 
 <script>
+import LayoutComp from "@/pages/Layout";
 export default {
-  name: "App",
-  components: {},
+  name: "app",
+  components: {
+    LayoutComp,
+  },
+  data() {
+    return {};
+  },
 };
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
+<style lang="less">
+html,
+body {
+  overflow: auto;
   height: 100%;
+  margin: 0;
   padding: 0;
-  margin: 0;
 }
-body,
-html {
-  margin: 0;
+#app {
   height: 100%;
 }
 </style>
