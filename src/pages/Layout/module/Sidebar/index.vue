@@ -40,6 +40,11 @@ export default {
           text: "VuePdf",
           src: "/pdf.html",
         },
+        {
+          id: "3",
+          text: "捕捉光标位置",
+          src: "/insertAtCursor.html",
+        },
       ],
     };
   },
