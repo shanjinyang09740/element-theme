@@ -2,10 +2,10 @@
   <div class="main">
     <fu-form :fu-data="formData">
       <fu-form-item label="参数：" prop="message">
-        <fu-select v-model="formData.colums" @change="selectChange(formData.colums)">
+        <fu-select v-model="formData.colums" @change="selectChange(formData.colums, 'colums')">
           <fu-option v-for="(i, index) in columsOption" :key="i.value" :label="i.text" :value="i.value"></fu-option>
         </fu-select>
-        <fu-select v-model="formData.params" @change="selectChange(formData.params)">
+        <fu-select v-model="formData.params" @change="selectChange(formData.params, 'params')">
           <fu-option v-for="(i, index) in paramsOption" :key="i.value" :label="i.text" :value="i.value"></fu-option>
         </fu-select>
       </fu-form-item>
@@ -77,13 +77,13 @@ export default {
   beforeDestroy () { },
   destroyed () { },
   methods: {
-    selectChange (val) {
-      this.insertAtCursor(val);
+    selectChange (val, type) {
+      let newVal = (type == 'colums' ? 'and ' : '@ ') + val;
+      this.insertAtCursor(newVal);
     },
     /**
      *插入模板说明的变量
      */
-    // 获取光标位置
     async insertAtCursor (myValue) {
       const myField = document.querySelector('#configInput');
       console.log('myField1111111', myField);

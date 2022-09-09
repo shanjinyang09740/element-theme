@@ -11,7 +11,7 @@ import Vuex from "vuex";
 import { storeConfig } from "fusion-ui";
 
 Vue.config.productionTip = false;
-Vue.use(ElementUI)
+Vue.use(ElementUI);
 Vue.use(Vuex);
 const store = new Vuex.Store(storeConfig);
 
