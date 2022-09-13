@@ -2,11 +2,10 @@
   <div class="main">
     <fu-form :fu-data="formData">
       <fu-form-item label="参数：" prop="message">
-        <fu-select v-model="formData.colums" @change="selectChange(formData.colums, 'colums')">
-          <fu-option v-for="(i, index) in columsOption" :key="i.value" :label="i.text" :value="i.value"></fu-option>
-        </fu-select>
-        <fu-select v-model="formData.params" @change="selectChange(formData.params, 'params')">
-          <fu-option v-for="(i, index) in paramsOption" :key="i.value" :label="i.text" :value="i.value"></fu-option>
+        <fu-select v-for="item in formItems" :key="item.value" :fu-request="item.fuRequest" :fu-id="item.fuId"
+          v-model="formData[item.value]" @change="selectChange(formData[item.value], item.value)">
+          <fu-option v-for="(i, index) in codeListOption(item.fuId)" :key="i.value" :label="i.text" :value="i.value">
+          </fu-option>
         </fu-select>
       </fu-form-item>
       <fu-form-item prop="message">
@@ -31,6 +30,26 @@ export default {
   props: {},
   data () {
     return {
+      formItems: [
+        {
+          text: "下拉一",
+          value: "colums",
+          fuId: "select01",
+          fuRequest: {
+            url: '/api/core/v1/dictionary/queryData.do?dicId=IndustryCode',
+            params: [],
+          }
+        },
+        {
+          text: "下拉二",
+          value: "params",
+          fuId: "select02",
+          fuRequest: {
+            url: '/api/core/v1/dictionary/queryData.do?dicId=EnterpriseSize',
+            params: [],
+          }
+        },
+      ],
       formData: {
         columns: '',
         params: '',
@@ -66,7 +85,13 @@ export default {
       ],
     };
   },
-  computed: {},
+  computed: {
+    codeListOption () {
+      return function (id) {
+        return this.$store.state.reqData[id] || [];
+      };
+    },
+  },
   watch: {},
   beforeCreate () { },
   created () { },
@@ -78,7 +103,7 @@ export default {
   destroyed () { },
   methods: {
     selectChange (val, type) {
-      let newVal = (type == 'colums' ? 'and ' : '@ ') + val;
+      let newVal = (type == 'colums' ? 'and-' : '@-') + val;
       this.insertAtCursor(newVal);
     },
     /**
@@ -112,5 +137,9 @@ export default {
 <style lang="less" scoped>
 .main {
   padding: 10px;
+
+  .el-select {
+    margin-right: 10px;
+  }
 }
 </style>
