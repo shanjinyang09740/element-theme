@@ -24,6 +24,12 @@ var productPages = {
         filename: "insertAtCursor.html",
         title: "捕捉光标位置",
     },
+    SetTableScroll: {
+        entry: "src/pages/SetTableScroll/index.js",
+        template: "public/index.html",
+        filename: "setTableScroll.html",
+        title: "设置表格滚动位置",
+    },
 };
 
 //打包

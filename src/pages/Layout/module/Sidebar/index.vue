@@ -1,15 +1,7 @@
 <template>
   <div>
-    <fu-menu
-      background-color="#21304D"
-      active-text-color="#ffd04b"
-      text-color="#fff"
-      style="width: 100%"
-      :unique-opened="true"
-      :default-active="defaultActiveMenue"
-      :default-openeds="['1']"
-      @select="select"
-    >
+    <fu-menu background-color="#21304D" active-text-color="#ffd04b" text-color="#fff" style="width: 100%"
+      :unique-opened="true" :default-active="defaultActiveMenue" :default-openeds="['1']" @select="select">
       <aside-child :menuList="menuList"></aside-child>
     </fu-menu>
   </div>
@@ -24,7 +16,7 @@ export default {
     FuMenu: Menu,
     AsideChild,
   },
-  data() {
+  data () {
     return {
       //默认激活高亮菜单
       defaultActiveMenue: "",
@@ -45,10 +37,15 @@ export default {
           text: "捕捉光标位置",
           src: "/insertAtCursor.html",
         },
+        {
+          id: "4",
+          text: "设置表格滚动位置",
+          src: "/setTableScroll.html",
+        },
       ],
     };
   },
-  mounted() {
+  mounted () {
     //初始化菜单
     this.initMenuActive();
   },
@@ -56,7 +53,7 @@ export default {
     /**
      * @description 初始化菜单
      */
-    initMenuActive() {
+    initMenuActive () {
       //默认显示第一个父节点下第一个子节点
       this.menuList.some((item, index) => {
         if (index == 0) {
@@ -73,7 +70,7 @@ export default {
      * @description 菜单切换事件
      * @param {String} $index
      */
-    select($index) {
+    select ($index) {
       this.findMenu($index, this.menuList, (data) => {
         this.$emit("changeMenue", data);
       });
@@ -83,7 +80,7 @@ export default {
      * @param {String} $index 当前菜单的索引id
      * @returns {Array} arr 菜单列
      */
-    findMenu($index, arr, callback) {
+    findMenu ($index, arr, callback) {
       if (!arr.length) return;
       arr.some((item) => {
         let $src = item.src;
