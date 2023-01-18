@@ -3,16 +3,11 @@
     <fu-container class="contain">
       <fu-header class="header"></fu-header>
       <fu-container class="container">
-        <fu-aside
-         class="aside"
-        >
+        <fu-aside class="aside">
           <side-bar @changeMenue="changeMenue"></side-bar>
         </fu-aside>
         <fu-main class="main">
-          <iframe
-            class="iframeMain"
-            :src="iframSrc"
-          ></iframe>
+          <iframe class="iframeMain" :src="iframSrc"></iframe>
         </fu-main>
       </fu-container>
     </fu-container>
@@ -26,7 +21,7 @@ import {
   Aside,
   Main,
 } from "fusion-ui";
-import SideBar from './module/Sidebar'
+import SideBar from './module/Sidebar';
 export default {
   name: "Layout",
   components: {
@@ -36,9 +31,9 @@ export default {
     FuMain: Main,
     SideBar
   },
-  data() {
+  data () {
     return {
-      iframSrc: "",
+      iframSrc: " ",
     };
   },
   methods: {
@@ -46,39 +41,46 @@ export default {
      * @description 菜单切换iframe事件
      * @param {val} iframe路径
     */
-   changeMenue(val) {
-       this.iframSrc = val;
-   }
+    changeMenue (val) {
+      this.iframSrc = val;
+    }
   },
 };
 </script>
 
 <style lang="less">
 .content {
-    height: 100vh;
-    .contain {
-      height: 100%; 
-      flex-direction: column;
-      .header {
-        background: #121931;
+  height: 100vh;
+
+  .contain {
+    height: 100%;
+    flex-direction: column;
+
+    .header {
+      background: #121931;
+    }
+
+    .container {
+      flex-direction: row;
+
+      .aside {
+        width: 200px;
+        border-right: 1px solid #666666;
+        overflow-x: hidden;
+        background-color: #21304d;
       }
-      .container {
-        flex-direction: row;
-        .aside {
-          width: 200px;
-          border-right: 1px solid #666666;
-          overflow-x: hidden;
-          background-color: #21304d;
-        }
-        .main {
-          padding: 0; overflow: hidden
-        }
-        .iframeMain {
-          width: 100%; 
-          height: 100%; 
-          border: none;
-        }
+
+      .main {
+        padding: 0;
+        overflow: hidden
+      }
+
+      .iframeMain {
+        width: 100%;
+        height: 100%;
+        border: none;
       }
     }
+  }
 }
 </style>
